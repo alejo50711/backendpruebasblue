@@ -5,7 +5,8 @@ node_modules/
 dist/
 
 # Environment variables
-.env
+# (.env se sube a proposito en este repo: mismas credenciales de prueba que
+# ya estan en .env.example, publicas, para que el deploy las pueda leer)
 .env.local
 *.env.local
 
