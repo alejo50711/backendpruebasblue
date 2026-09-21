@@ -10,7 +10,6 @@ function required(name: string): string {
 
 export const env = {
   port: Number(process.env.PORT ?? 3000),
-  corsOrigin: process.env.CORS_ORIGIN ?? 'http://localhost:4200',
   // Getter: solo valida DB_* cuando algo realmente se conecta a la base
   // (config/database.ts), no con solo importar este modulo. Así los tests
   // unitarios de servicios/validaciones corren sin necesitar un .env.

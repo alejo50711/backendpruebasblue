@@ -33,7 +33,6 @@ El servidor queda escuchando en `http://localhost:3000` (o el `PORT` que definas
 | Variable | Descripcion | Valor de la prueba |
 |---|---|---|
 | `PORT` | Puerto del API | `3000` |
-| `CORS_ORIGIN` | Origen permitido para CORS (URL del frontend) | `http://localhost:4300` |
 | `DB_HOST` | Host de PostgreSQL (Aurora) | `demo-aurora-postgresql.cluster-cbyco0wyw688.us-east-1.rds.amazonaws.com` |
 | `DB_PORT` | Puerto de PostgreSQL | `5432` |
 | `DB_USERNAME` | Usuario | `usuario_c` |
@@ -183,6 +182,12 @@ Todas requieren `Authorization: Bearer <token>`.
   no incluye recuperacion de contrasena ni verificacion de correo, fuera del alcance pedido.
 - **Registro publico solo crea clientes**: las cuentas de trabajador se aprovisionan por seed
   (`src/config/seed.ts`), simulando que son cuentas internas, no de autoregistro.
+- **CORS abierto (sin whitelist de origen)**: el frontend se probo desde varios puertos locales
+  y despliegues distintos durante la prueba. La API se autentica con JWT por header
+  `Authorization`, no por cookies, asi que un origen abierto no habilita CSRF contra la sesion
+  de otro usuario (no hay sesion de cookie que un sitio de terceros pueda "reusar" sin conocer
+  el token). En un entorno real con un frontend en un dominio fijo, esto se restringiria a ese
+  origen especifico.
 
 ## Fuera de alcance en esta entrega
 
